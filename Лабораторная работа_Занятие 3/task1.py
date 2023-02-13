@@ -25,12 +25,21 @@ class PaperBook(Book):
     """ Дочерний класс книги, бумажная """
     def __init__(self, name: str, author: str, pages: int):
         super().__init__(name, author)
+        self._pages = pages
 
-        if not isinstance(pages, int):
+    @property
+    def pages(self) -> int:
+        """Возвращает количество страниц книги"""
+        return self._pages
+
+    @pages.setter
+    def pages(self, pages_: int) -> None:
+        """Устанавливает количество страниц книги"""
+        if not isinstance(pages_, int):
             raise TypeError("Количество страниц в книге должно быть типа int")
-        if pages <= 0:
+        if pages_ <= 0:
             raise ValueError("Количество страниц в книге должно быть больше нуля")
-        self.pages = pages
+        self._pages = pages_
 
     def __str__(self):
         return f"Книга {self.name}. Автор {self.author}. Количество страниц {self.pages}"
@@ -43,12 +52,21 @@ class AudioBook(Book):
     """ Дочерний класс книги, аудиокнига """
     def __init__(self, name: str, author: str, duration: float):
         super().__init__(name, author)
+        self._duration = duration
 
-        if not isinstance(duration, float):
-            raise TypeError("Продолжительность аудиокниги должна быть типа float")
-        if duration <= 0:
-            raise ValueError("Продолжительность аудиокниги должна быть больше нуля")
-        self.duration = duration
+    @property
+    def duration(self) -> int:
+        """Возвращает длительность книги"""
+        return self._duration
+
+    @duration.setter
+    def duration(self, duration_: int) -> None:
+        """Устанавливает длительность книги"""
+        if not isinstance(duration_, int):
+            raise TypeError("Длительность книги должна быть типа int")
+        if duration__ <= 0:
+            raise ValueError("Длительность книги должна быть больше нуля")
+        self._duration = duration_
 
     def __str__(self):
         return f"Книга {self.name}. Автор {self.author}. Продолжительность книги {self.duration}"
